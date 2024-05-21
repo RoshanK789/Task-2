@@ -1,0 +1,42 @@
+
+create table Mentor
+(
+M_id int primary key,
+Mentor_Name varchar(30)
+);
+
+create table Batch
+(
+Batch_id int primary key,
+Batch_name varchar(30),
+M_id int,
+course varchar(30),
+foreign key (M_id) references Mentor(M_id)
+);
+
+create table students
+(
+S_id int primary key,
+Student_name varchar(30),
+Batch_id int,
+foreign key (Batch_id) references Batch(Batch_id),
+M_id int,
+foreign key (M_id) references Mentor(M_id)
+);
+
+create table Task
+(
+T_id int primary key,
+S_id int,
+foreign key (S_id) references students(S_id),
+Task_Completion int,
+Task_pending int
+);
+
+create table Attendance
+(
+A_id int primary key,
+S_id int,
+foreign key (S_id) references students(S_id),
+Attendance int
+);
